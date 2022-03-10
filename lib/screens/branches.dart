@@ -7,6 +7,7 @@ import 'package:hms/models/branch/get_branch.dart';
 import 'package:hms/screens/addbranche.dart';
 import 'package:hms/screens/patient/cubit/cubit.dart';
 import 'package:hms/screens/patient/cubit/state.dart';
+import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:loading_animations/loading_animations.dart';
 import 'package:lottie/lottie.dart';
 
@@ -21,7 +22,8 @@ class branches extends StatefulWidget {
 class _branchesState extends State<branches> {
   bool initial = false;
   List<Branch> bransh_list = [];
-
+  int pages = 10;
+  pagingController(int, CharacterSummary) {}
   getdata() {
     bransh_list.clear();
     bransh_list.add(Branch(
@@ -46,6 +48,10 @@ class _branchesState extends State<branches> {
 
   @override
   Widget build(BuildContext context) {
+    int pageIndex = PatientCubit.get(context).getBranchModel!.data!.length;
+    if (pageIndex < pages) {
+      pageIndex += 1;
+    }
     getdata();
     return BlocProvider(
       create: (context) => PatientCubit()..getBranches(),
@@ -99,7 +105,13 @@ class _branchesState extends State<branches> {
                                       .getBranchModel!
                                       .data!
                                       .isNotEmpty
-                                  ? ListView.builder(
+                                  ?
+                                  // PagedListView(
+                                  //   pagingController: ,
+                                  //    builderDelegate: builderDelegate,
+
+                                  //    )
+                                  ListView.builder(
                                       shrinkWrap: true,
                                       itemBuilder: (context, index) =>
                                           getBranchs(PatientCubit.get(context)
@@ -334,5 +346,20 @@ class _branchesState extends State<branches> {
         ),
       ),
     );
+  }
+
+  Future<void> fetchPage(int pageKey) async {
+    //   try {
+    //     final newItems = PatientCubit.get(context).getBranches();
+    //     final isLastPage = PatientCubit.get(context).getBranchModel!.data!.length < _pageSize;
+    //     if (isLastPage) {
+    //       pagingController.appendLastPage(newItems);
+    //     } else {
+    //       final nextPageKey = pageKey + PatientCubit.get(context).getBranchModel!.data!.length;
+    //       pagingController.appendPage(newItems, nextPageKey);
+    //     }
+    //   } catch (error) {
+    //     pagingController.error = error;
+    //   }
   }
 }

@@ -14,12 +14,13 @@ class DioHelper {
     );
   }
 
-  static Future<Response> getData({required String path, String? token}) async {
+  static Future<Response> getData(
+      {Map<String, dynamic>? data, required String path, String? token}) async {
     dio.options.headers = {
       "accept": "*/*",
       "Authorization": "Bearer $token",
     };
-    return await dio.get(path);
+    return await dio.get(path, queryParameters: data!);
   }
 
   static Future<Response> putData(

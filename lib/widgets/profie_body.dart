@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:hms/components/backgroundbottom.dart';
 import 'package:hms/constants/constants.dart';
+import 'package:hms/screens/notifications/notifications.dart';
 import 'package:hms/widgets/edit_username_data.dart';
 import 'package:hms/widgets/profile_pic.dart';
 
@@ -32,17 +33,20 @@ class BodyProfile extends StatelessWidget {
               child: GestureDetector(
                 child: Row(
                   children: [
-
                     SizedBox(
                       width: 20.0,
                     ),
                     Expanded(
                       child: Text(
                         'حسابي الشخصي',
-                        style: TextStyle(fontWeight: FontWeight.bold,color: Colors.white),
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold, color: Colors.white),
                       ),
                     ),
-                    Icon(Icons.arrow_forward_ios,color: Colors.white,),
+                    Icon(
+                      Icons.arrow_forward_ios,
+                      color: Colors.white,
+                    ),
                   ],
                 ),
                 onTap: () {
@@ -66,17 +70,28 @@ class BodyProfile extends StatelessWidget {
               onPressed: () {},
               child: Row(
                 children: [
-
                   SizedBox(
                     width: 20.0,
                   ),
                   Expanded(
-                    child: Text(
-                      'الاشعارات',
-                      style: TextStyle(fontWeight: FontWeight.bold,color: Colors.white),
+                    child: InkWell(
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => NotificationScreen()));
+                      },
+                      child: Text(
+                        'الاشعارات',
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold, color: Colors.white),
+                      ),
                     ),
                   ),
-                  Icon(Icons.arrow_forward_ios,color: Colors.white,)
+                  Icon(
+                    Icons.arrow_forward_ios,
+                    color: Colors.white,
+                  )
                 ],
               ),
             ),
@@ -91,17 +106,20 @@ class BodyProfile extends StatelessWidget {
               onPressed: () {},
               child: Row(
                 children: [
-
                   SizedBox(
                     width: 20.0,
                   ),
                   Expanded(
                     child: Text(
                       'الاعدادات',
-                      style: TextStyle(fontWeight: FontWeight.bold,color: Colors.white),
+                      style: TextStyle(
+                          fontWeight: FontWeight.bold, color: Colors.white),
                     ),
                   ),
-                  Icon(Icons.arrow_forward_ios,color: Colors.white,)
+                  Icon(
+                    Icons.arrow_forward_ios,
+                    color: Colors.white,
+                  )
                 ],
               ),
             ),
@@ -116,18 +134,20 @@ class BodyProfile extends StatelessWidget {
               onPressed: () {},
               child: Row(
                 children: [
-
                   SizedBox(
                     width: 20.0,
                   ),
                   Expanded(
                     child: Text(
-
                       'تسجيل الخروج',
-                      style: TextStyle(fontWeight: FontWeight.bold,color: Colors.white),
+                      style: TextStyle(
+                          fontWeight: FontWeight.bold, color: Colors.white),
                     ),
                   ),
-                  Icon(Icons.arrow_forward_ios,color: Colors.white,)
+                  Icon(
+                    Icons.arrow_forward_ios,
+                    color: Colors.white,
+                  )
                 ],
               ),
             ),
