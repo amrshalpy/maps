@@ -44,15 +44,12 @@ class PatientCubit extends Cubit<PatientState> {
   }
 
   GetBranches? getBranchModel;
-  void getBranches({int? pageId}) {
+  void getBranches() {
     emit(GetBranchesLoading());
 
     DioHelper.getData(
             token: uid!,
-            data: {
-              'pageId': pageId!,
-            },
-            path: 'https://192.168.1.100:49/api/Branch/Get')
+            path: 'https://192.168.1.100:49/api/Branch/Get?pageId= 1')
         .then((value) {
       getBranchModel = GetBranches.fromJson(value.data);
       emit(GetBranchesSucsses());

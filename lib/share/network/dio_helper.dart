@@ -20,7 +20,7 @@ class DioHelper {
       "accept": "*/*",
       "Authorization": "Bearer $token",
     };
-    return await dio.get(path, queryParameters: data!);
+    return await dio.get(path, queryParameters: data);
   }
 
   static Future<Response> putData(

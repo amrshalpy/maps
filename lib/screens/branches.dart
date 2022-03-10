@@ -48,10 +48,6 @@ class _branchesState extends State<branches> {
 
   @override
   Widget build(BuildContext context) {
-    int pageIndex = PatientCubit.get(context).getBranchModel!.data!.length;
-    if (pageIndex < pages) {
-      pageIndex += 1;
-    }
     getdata();
     return BlocProvider(
       create: (context) => PatientCubit()..getBranches(),
