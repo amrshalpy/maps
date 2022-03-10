@@ -1,5 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:dio/dio.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hms/constants/admin_const.dart';
 import 'package:hms/constants/api_key.dart';
@@ -43,13 +44,33 @@ class PatientCubit extends Cubit<PatientState> {
     }
   }
 
+  int curentPage = 1;
   GetBranches? getBranchModel;
+
+  int pages = 4;
+  void inCreasePage() {
+    if (getBranchModel!.data!.length < pages) {
+      curentPage + 1;
+      Center(child: CircularProgressIndicator());
+
+      emit(IncreasePage());
+    } else if (getBranchModel!.data!.length > pages && curentPage > 1) {
+      curentPage -= 1;
+      Center(child: CircularProgressIndicator());
+
+      emit(DecreasePage());
+    } else {
+      curentPage == 1;
+      emit(DecreasePage());
+    }
+  }
+
   void getBranches() {
     emit(GetBranchesLoading());
 
     DioHelper.getData(
             token: uid!,
-            path: 'https://192.168.1.100:49/api/Branch/Get?pageId= 1')
+            path: 'https://192.168.1.100:49/api/Branch/Get?pageId= $curentPage')
         .then((value) {
       getBranchModel = GetBranches.fromJson(value.data);
       emit(GetBranchesSucsses());

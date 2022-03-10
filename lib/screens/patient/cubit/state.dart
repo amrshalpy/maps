@@ -4,6 +4,10 @@ class PatientInitailState extends PatientState {}
 
 class ChangeLiked extends PatientState {}
 
+class IncreasePage extends PatientState {}
+
+class DecreasePage extends PatientState {}
+
 class LoginAdminDataLoading extends PatientState {}
 
 class LoginAdminDataSucsses extends PatientState {
