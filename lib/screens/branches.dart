@@ -126,6 +126,7 @@ class _branchesState extends State<branches> {
                                               .dataOfPages!
                                               .length+=PatientCubit.get(context).pages,
                                     )
+                              //shape
                                   : const Center(
                                       child: Text('اضف تفاصيل الفروع'))
                             ],
