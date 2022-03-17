@@ -2,11 +2,14 @@ import 'package:cool_stepper/cool_stepper.dart';
 import 'package:day_picker/day_picker.dart';
 import 'package:day_picker/model/day_in_week.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:hms/components/background.dart';
 import 'package:hms/components/backgroundbottom.dart';
 import 'package:hms/constants/constants.dart';
 import 'package:hms/models/Branch.dart';
+import 'package:hms/screens/patient/cubit/cubit.dart';
+import 'package:hms/screens/patient/cubit/state.dart';
 import 'package:lottie/lottie.dart';
 import 'package:search_choices/search_choices.dart';
 
@@ -63,197 +66,220 @@ class _adddoctorState extends State<adddoctor> {
 
   @override
   Widget build(BuildContext context) {
-
-    return Scaffold(
-appBar: AppBar(
-  elevation: 0,
-  backgroundColor: kMainColor,
-  centerTitle: true,
-  title:  Text('بيانات الطبيب'),
-),
-      body: Backgroundbottom(
-        child: Form(
-          key: _formKey,
-          child: Padding(
-            padding: const EdgeInsets.all(15.0),
-            child: Column(
-              children: [
-                Padding(
-                    padding: EdgeInsets.only(right: 10, left: 10),
-                    child: Text(
-                      'اسم الطبيب',
-                      style: TextStyle(
-                          fontSize: 10,
-                          fontWeight: FontWeight.normal,
-                          color: Colors.black87),
-                    )),
-                _builddropDown(items, "اسم الطبيب", selectedValue),
-                SizedBox(
-                  height: 15,
-                ),
-                Padding(
-                    padding: EdgeInsets.only(right: 10, left: 10),
-                    child: Text(
-                      'نظام الحضور',
-                      style: TextStyle(
-                          fontSize: 10,
-                          fontWeight: FontWeight.normal,
-                          color: Colors.black87),
-                    )),
-                _builddropDown(items, "نظام الحضور", selectedValue),
-                SizedBox(
-                  height: 15,
-                ),
-                Padding(
-                    padding: EdgeInsets.only(right: 10, left: 10),
-                    child: Text(
-                      'رقم الموظف',
-                      style: TextStyle(
-                          fontSize: 10,
-                          fontWeight: FontWeight.normal,
-                          color: Colors.black87),
-                    )),
-                Container(
-                    decoration: BoxDecoration(
-                        border: Border.all(
-                          color: Colors.black38,
-                          width: 1,
-                        )),
-                    child: Center(
-                      child: Padding(
-                        padding: const EdgeInsets.all(10.0),
-                        child: Text("0001233"),
+    return BlocConsumer<PatientCubit, PatientState>(
+        listener: (context, stata) {},
+        builder: (context, stata) {
+          PatientCubit cubit = PatientCubit.get(context);
+          return Scaffold(
+            appBar: AppBar(
+              elevation: 0,
+              backgroundColor: kMainColor,
+              centerTitle: true,
+              title: Text('بيانات الطبيب'),
+            ),
+            body: Backgroundbottom(
+              child: Form(
+                key: _formKey,
+                child: Padding(
+                  padding: const EdgeInsets.all(15.0),
+                  child: Column(
+                    children: [
+                      Padding(
+                          padding: EdgeInsets.only(right: 10, left: 10),
+                          child: Text(
+                            'اسم الطبيب',
+                            style: TextStyle(
+                                fontSize: 10,
+                                fontWeight: FontWeight.normal,
+                                color: Colors.black87),
+                          )),
+                      _builddropDown(items, "اسم الطبيب", selectedValue),
+                      SizedBox(
+                        height: 15,
                       ),
-                    )),
-                SizedBox(
-                  height: 15,
-                ),
-
-                Padding(
-                    padding: EdgeInsets.only(right: 10, left: 10),
-                    child: Text(
-                      'ايام العمل',
-                      style: TextStyle(
-                          fontSize: 10,
-                          fontWeight: FontWeight.normal,
-                          color: Colors.black87),
-                    )),
-                Center(
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: SelectWeekDays(
-                      fontSize: 14,
-                      fontWeight: FontWeight.w500,
-                      days: _days,
-                      border: false,
-                      boxDecoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(30.0),
-                        gradient: LinearGradient(
-                          begin: Alignment.topLeft,
-                          colors: [kMainColor, Colors.green],
-                          tileMode: TileMode
-                              .repeated, // repeats the gradient over the canvas
+                      Padding(
+                          padding: EdgeInsets.only(right: 10, left: 10),
+                          child: Text(
+                            'نظام الحضور',
+                            style: TextStyle(
+                                fontSize: 10,
+                                fontWeight: FontWeight.normal,
+                                color: Colors.black87),
+                          )),
+                      _builddropDown(items, "نظام الحضور", selectedValue),
+                      SizedBox(
+                        height: 15,
+                      ),
+                      Padding(
+                          padding: EdgeInsets.only(right: 10, left: 10),
+                          child: Text(
+                            'رقم الموظف',
+                            style: TextStyle(
+                                fontSize: 10,
+                                fontWeight: FontWeight.normal,
+                                color: Colors.black87),
+                          )),
+                      Container(
+                          decoration: BoxDecoration(
+                              border: Border.all(
+                            color: Colors.black38,
+                            width: 1,
+                          )),
+                          child: Center(
+                            child: Padding(
+                              padding: const EdgeInsets.all(10.0),
+                              child: Text("0001233"),
+                            ),
+                          )),
+                      SizedBox(
+                        height: 15,
+                      ),
+                      Padding(
+                          padding: EdgeInsets.only(right: 10, left: 10),
+                          child: Text(
+                            'ايام العمل',
+                            style: TextStyle(
+                                fontSize: 10,
+                                fontWeight: FontWeight.normal,
+                                color: Colors.black87),
+                          )),
+                      Center(
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: SelectWeekDays(
+                            fontSize: 14,
+                            fontWeight: FontWeight.w500,
+                            days: _days,
+                            border: false,
+                            boxDecoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(30.0),
+                              gradient: LinearGradient(
+                                begin: Alignment.topLeft,
+                                colors: [kMainColor, Colors.green],
+                                tileMode: TileMode
+                                    .repeated, // repeats the gradient over the canvas
+                              ),
+                            ),
+                            onSelect: (values) {
+                              // <== Callback to handle the selected days
+                              print(values);
+                            },
+                          ),
                         ),
                       ),
-                      onSelect: (values) {
-                        // <== Callback to handle the selected days
-                        print(values);
-                      },
-                    ),
-                  ),
-                ),
-                SizedBox(
-                  height: 15,
-                ),
-                Row(
-                  children: [
-                    Expanded(
-                        child: Column(
-                          children: [
-                            Padding(
-                                padding: EdgeInsets.only(right: 10, left: 10),
-                                child: Text(
-                                  'وقت الانصراف',
-                                  style: TextStyle(
-                                      fontSize: 10,
-                                      fontWeight: FontWeight.normal,
-                                      color: Colors.black87),
-                                )),
-                            MaterialButton(
-                                elevation: 15,
-                                shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(80.0)),
-                                minWidth: MediaQuery.of(context).size.width - 40,
-                                color: kMainColor,
-                                onPressed: () async {
-                                  showTimePicker(
-                                      context: context,
-                                      initialTime: TimeOfDay(hour: 08, minute: 00),
-                                      initialEntryMode: TimePickerEntryMode.dial,
-                                      confirmText: "تاكيد",
-                                      cancelText: "ليس الان",
-                                      helpText: "وقت الحضور").then((value){
-                                    setState(() {
-                                      end_date=value!.hour.toString()+":"+value.minute.toString();});
-                                  });
-                                },
-                                child: new Text(
-                                  end_date,
-                                  style: TextStyle(color: Colors.white,fontSize: 15,fontWeight: FontWeight.bold),
-                                )),
-                          ],
-                        )),
-                    SizedBox(
-                      width: 15,
-                    ),
-                    Expanded(
-                        child: Column(
-                          children: [
-                            Padding(
-                                padding: EdgeInsets.only(right: 10, left: 10),
-                                child: Text(
-                                  'وقت الحضور',
-                                  style: TextStyle(
-                                      fontSize: 10,
-                                      fontWeight: FontWeight.normal,
-                                      color: Colors.black87),
-                                )),
-                            Container(
-                              child: MaterialButton(
+                      SizedBox(
+                        height: 15,
+                      ),
+                      Row(
+                        children: [
+                          Expanded(
+                              child: Column(
+                            children: [
+                              Padding(
+                                  padding: EdgeInsets.only(right: 10, left: 10),
+                                  child: Text(
+                                    'وقت الانصراف',
+                                    style: TextStyle(
+                                        fontSize: 10,
+                                        fontWeight: FontWeight.normal,
+                                        color: Colors.black87),
+                                  )),
+                              MaterialButton(
                                   elevation: 15,
                                   shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(80.0)),
-                                  minWidth: MediaQuery.of(context).size.width - 40,
+                                      borderRadius:
+                                          BorderRadius.circular(80.0)),
+                                  minWidth:
+                                      MediaQuery.of(context).size.width - 40,
                                   color: kMainColor,
                                   onPressed: () async {
                                     showTimePicker(
-                                        context: context,
-                                        initialTime: TimeOfDay(hour: 08, minute: 00),
-                                        initialEntryMode: TimePickerEntryMode.dial,
-                                        confirmText: "تاكيد",
-                                        cancelText: "ليس الان",
-                                        helpText: "وقت الانصراف"
-
-                                    ).then((value){
+                                            context: context,
+                                            initialTime:
+                                                TimeOfDay(hour: 08, minute: 00),
+                                            initialEntryMode:
+                                                TimePickerEntryMode.dial,
+                                            confirmText: "تاكيد",
+                                            cancelText: "ليس الان",
+                                            helpText: "وقت الحضور")
+                                        .then((value) {
                                       setState(() {
-                                        start_date=value!.hour.toString()+":"+value.minute.toString();});
+                                        end_date = value!.hour.toString() +
+                                            ":" +
+                                            value.minute.toString();
+                                      });
                                     });
                                   },
                                   child: new Text(
-                                    start_date,
-                                    style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,fontSize: 15),
+                                    end_date,
+                                    style: TextStyle(
+                                        color: Colors.white,
+                                        fontSize: 15,
+                                        fontWeight: FontWeight.bold),
                                   )),
-                            ),
-                          ],
-                        )),
-                  ],
-                )
-              ],
+                            ],
+                          )),
+                          SizedBox(
+                            width: 15,
+                          ),
+                          Expanded(
+                              child: Column(
+                            children: [
+                              Padding(
+                                  padding: EdgeInsets.only(right: 10, left: 10),
+                                  child: Text(
+                                    'وقت الحضور',
+                                    style: TextStyle(
+                                        fontSize: 10,
+                                        fontWeight: FontWeight.normal,
+                                        color: Colors.black87),
+                                  )),
+                              Container(
+                                child: MaterialButton(
+                                    elevation: 15,
+                                    shape: RoundedRectangleBorder(
+                                        borderRadius:
+                                            BorderRadius.circular(80.0)),
+                                    minWidth:
+                                        MediaQuery.of(context).size.width - 40,
+                                    color: kMainColor,
+                                    onPressed: () async {
+                                      showTimePicker(
+                                              context: context,
+                                              initialTime: TimeOfDay(
+                                                  hour: 08, minute: 00),
+                                              initialEntryMode:
+                                                  TimePickerEntryMode.dial,
+                                              confirmText: "تاكيد",
+                                              cancelText: "ليس الان",
+                                              helpText: "وقت الانصراف")
+                                          .then((value) {
+                                        setState(() {
+                                          start_date = value!.hour.toString() +
+                                              ":" +
+                                              value.minute.toString();
+                                        });
+                                      });
+                                    },
+                                    child: new Text(
+                                      start_date,
+                                      style: TextStyle(
+                                          color: Colors.white,
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 15),
+                                    )),
+                              ),
+                            ],
+                          )),
+                        ],
+                      )
+                    ],
+                  ),
+                ),
+              ),
             ),
-          ),
-        ),
-      ),
-    );
+          );
+        });
   }
 
   Widget _buildTextField({

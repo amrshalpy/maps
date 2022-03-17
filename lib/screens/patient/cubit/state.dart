@@ -6,6 +6,8 @@ class ChangeLiked extends PatientState {}
 
 class IncreasePage extends PatientState {}
 
+class FetchData extends PatientState {}
+
 class DecreasePage extends PatientState {}
 
 class LoginAdminDataLoading extends PatientState {}
@@ -46,3 +48,33 @@ class DeleteBranchesLoading extends PatientState {}
 class DeleteBranchesSucsses extends PatientState {}
 
 class DeleteBranchesError extends PatientState {}
+
+class CreateNewDoctorLoading extends PatientState {}
+
+class CreateNewDoctorSucsses extends PatientState {}
+
+class CreateNewDoctorError extends PatientState {}
+
+class DeleteDoctorLoading extends PatientState {}
+
+class DeleteDoctorSucsses extends PatientState {}
+
+class DeleteDoctorError extends PatientState {}
+
+class GetDoctorLoading extends PatientState {}
+
+class GetDoctorSucsses extends PatientState {}
+
+class GetDoctorError extends PatientState {}
+
+class GetDoctorDetailsLoading extends PatientState {}
+
+class GetDoctorDetailsSucsses extends PatientState {}
+
+class GetDoctorDetailsError extends PatientState {}
+
+class UpdateDoctorDetailsLoading extends PatientState {}
+
+class UpdateDoctorDetailsSucsses extends PatientState {}
+
+class UpdateDoctorDetailsError extends PatientState {}

@@ -7,6 +7,11 @@ const kCreateBranch = 'https://192.168.1.100:49/api/Branch/Create';
 const kdeleteBranch = 'https://192.168.1.100:49/api/Branch/Delete';
 const kUpdateBranch = 'https://192.168.1.100:49/api/Branch/Update';
 const kGetDetailsBranch = 'https://192.168.1.100:49/api/Branch/Details';
+const kDeleteDoctor = 'https://192.168.1.100:49/api/Employee/Delete';
+const kCreateDoctor = 'https://192.168.1.100:49/api/Employee/Create';
+const kGetDoctor = 'https://192.168.1.100:49/api/Employee/Get';
+const kUpdateDoctor = 'https://192.168.1.100:49/api/Employee/Edit';
+const kDetailsDoctor = 'https://192.168.1.100:49/api/Employee/Details';
 
 
 

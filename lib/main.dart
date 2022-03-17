@@ -9,6 +9,7 @@ import 'package:hms/screens/home.dart';
 import 'package:hms/screens/intro_slider.dart';
 import 'package:hms/screens/login_screen.dart';
 import 'package:hms/screens/patient/cubit/cubit.dart';
+import 'package:hms/screens/patient/cubit/employee_cubit.dart';
 import 'package:hms/screens/profile_screen.dart';
 import 'package:hms/screens/splash_screen.dart';
 import 'package:hms/share/network/dio_helper.dart';
@@ -44,7 +45,12 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
-        BlocProvider(create: (context) => PatientCubit()),
+        BlocProvider<PatientCubit>(
+          create: (context) => PatientCubit(),
+        ),
+        BlocProvider<EmployeeCubit>(
+          create: (context) => EmployeeCubit(),
+        ),
       ],
       child: MaterialApp(
         title: 'HMS',
@@ -52,7 +58,7 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
           fontFamily: 'Cairo',
         ),
-        home:  SplashScreen(),
+        home: SplashScreen(),
       ),
     );
   }

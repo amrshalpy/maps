@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hms/components/background.dart';
@@ -7,7 +8,6 @@ import 'package:hms/models/branch/get_branch.dart';
 import 'package:hms/screens/addbranche.dart';
 import 'package:hms/screens/patient/cubit/cubit.dart';
 import 'package:hms/screens/patient/cubit/state.dart';
-import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:loading_animations/loading_animations.dart';
 import 'package:lottie/lottie.dart';
 
@@ -22,8 +22,6 @@ class branches extends StatefulWidget {
 class _branchesState extends State<branches> {
   bool initial = false;
   List<Branch> bransh_list = [];
-  int pages = 10;
-  pagingController(int, CharacterSummary) {}
   getdata() {
     bransh_list.clear();
     bransh_list.add(Branch(
@@ -50,7 +48,9 @@ class _branchesState extends State<branches> {
   Widget build(BuildContext context) {
     getdata();
     return BlocProvider(
-      create: (context) => PatientCubit()..getBranches(),
+      create: (context) => PatientCubit()
+        ..fetchData()
+        ..getBranches(),
       child: BlocConsumer<PatientCubit, PatientState>(
         listener: (context, state) {},
         builder: (context, state) {
@@ -101,22 +101,30 @@ class _branchesState extends State<branches> {
                                       .getBranchModel!
                                       .data!
                                       .isNotEmpty
-                                  ?
-                                  // PagedListView(
-                                  //   pagingController: ,
-                                  //    builderDelegate: builderDelegate,
-
-                                  //    )
-                                  ListView.builder(
+                                  ? ListView.builder(
+                                      scrollDirection: Axis.vertical,
+                                      physics: AlwaysScrollableScrollPhysics(),
+                                      controller:
+                                          PatientCubit.get(context).controller,
                                       shrinkWrap: true,
-                                      itemBuilder: (context, index) =>
-                                          getBranchs(PatientCubit.get(context)
-                                              .getBranchModel!
-                                              .data![index]),
-                                      itemCount: PatientCubit.get(context)
-                                          .getBranchModel!
-                                          .data!
-                                          .length,
+                                      itemBuilder: (context, index) {
+                                        if (index ==
+                                            PatientCubit.get(context)
+                                                .getBranchModel!
+                                                .data!
+                                                .length) {
+                                          return CupertinoActivityIndicator();
+                                        } else {
+                                          return getBranchs(
+                                              PatientCubit.get(context)
+                                                  .getBranchModel!
+                                                  .data![index]);
+                                        }
+                                      },
+                                      itemCount:
+                                          PatientCubit.get(context)
+                                              .dataOfPages!
+                                              .length+=PatientCubit.get(context).pages,
                                     )
                                   : const Center(
                                       child: Text('اضف تفاصيل الفروع'))

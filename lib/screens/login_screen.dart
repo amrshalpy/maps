@@ -44,6 +44,7 @@ class _LogInScreenState extends State<LogInScreen> {
       },
       builder: (context, state) {
         return Scaffold(
+          resizeToAvoidBottomInset: false,
           body: Background(
             child: Container(
               child: Center(

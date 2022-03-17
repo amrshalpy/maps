@@ -47,7 +47,7 @@ class DioHelper {
   static Future<Response> deleteData(
       {String? path, Map<String, dynamic>? data, String? token}) async {
     dio.options.headers = {
-      'content-type': 'application/json',
+      // 'content-type': 'application/json',
       "Authorization": "Bearer $token",
     };
     return await dio.delete(path!, queryParameters: data);
